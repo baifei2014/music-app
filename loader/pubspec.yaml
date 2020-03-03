@@ -1,0 +1,21 @@
+name: loader
+description: state manager for loader
+version: 0.0.1
+author: boyan01<yangbinyhbn@gmail.com>
+homepage: https://github.com/boyan01/loader
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  scoped_model: ^1.0.1
+  async: ^2.2.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mockito: ^4.0.0
+
+flutter:

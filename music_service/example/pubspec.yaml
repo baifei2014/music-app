@@ -1,0 +1,28 @@
+name: music_player_example
+description: Demonstrates how to use the flutter_music_player plugin.
+publish_to: 'none'
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^0.1.2
+  overlay_support: ^1.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  music_player:
+    path: ../
+
+flutter:
+
+  uses-material-design: true
+  assets:
+    - tracks/
+    - images/
+
