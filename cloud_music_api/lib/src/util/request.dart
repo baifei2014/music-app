@@ -82,9 +82,6 @@ Future<Answer> request(
 }
 
 Future<HttpClientResponse> _doRequest(String url, Map<String, String> headers, Map data, String method) {
-  print("请求url : \n $url");
-  print("请求参数 : \n $data");
-  data = data.map((k, v) => MapEntry(k.toString(), v.toString()));
   return HttpClient().openUrl(method, Uri.parse(url)).then((request) {
     headers.forEach(request.headers.add);
     request.write(Uri(queryParameters: data.cast()).query);

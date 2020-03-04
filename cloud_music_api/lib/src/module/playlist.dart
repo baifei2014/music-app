@@ -7,8 +7,8 @@ Handler playlist_detail = (query, cookie) {
       'http://192.168.1.75:8080/weapi/playlist/detail',
       {
         'id': query['id'],
-        'n': query['n'] ?? 100000,
-        's': query['s'] ?? 8,
+        'n': query['n'] ?? '100000',
+        's': query['s'] ?? '8',
       },
       crypto: Crypto.linuxapi,
       cookies: cookie);

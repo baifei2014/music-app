@@ -17,17 +17,17 @@ class PlayingListDialogState extends State<PlayingListDialog> {
   @override
   void initState() {
     super.initState();
-//    final playingList = context.player.value.playingList;
-//    final music = context.player.value.current;
-//    assert(music != null, '展示播放列表时，当前音乐不能为空！');
-//    double offset = playingList.indexOf(music) * _HEIGHT_MUSIC_TILE;
-//    _controller = ScrollController(initialScrollOffset: offset);
+    final playingList = context.player.value.playingList;
+    final music = context.player.value.current;
+    assert(music != null, '展示播放列表时，当前音乐不能为空！');
+    double offset = playingList.indexOf(music) * _HEIGHT_MUSIC_TILE;
+    _controller = ScrollController(initialScrollOffset: offset);
   }
 
   @override
   Widget build(BuildContext context) {
-//    final playingList = context.playerValue.playingList;
-//    final music = context.playerValue.current;
+    final playingList = context.playerValue.playingList;
+    final music = context.playerValue.current;
 
     return Container(
       height: MediaQuery.of(context).size.height / 2,
@@ -37,13 +37,11 @@ class PlayingListDialogState extends State<PlayingListDialog> {
           Expanded(
             child: ListView.builder(
                 controller: _controller,
-//                itemCount: playingList.length,
-                itemCount: 12121,
-//                itemBuilder: (context, index) {
-//                  var item = playingList[index];
-//                  return _MusicTile(music: item, playing: item == music);
-//                }
-                ),
+                itemCount: playingList.length,
+                itemBuilder: (context, index) {
+                  var item = playingList[index];
+                  return _MusicTile(music: item, playing: item == music);
+                }),
           ),
           SizedBox(height: MediaQuery.of(context).viewInsets.bottom),
         ],
@@ -60,24 +58,24 @@ class _Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-//    final playMode = context.playMode;
-//    final count = context.playList.queue.length;
+    final playMode = context.playMode;
+    final count = context.playList.queue.length;
     IconData icon;
     String name;
-//    switch (playMode) {
-//      case PlayMode.single:
-//        icon = Icons.repeat_one;
-//        name = "单曲循环";
-//        break;
-//      case PlayMode.sequence:
-//        icon = Icons.repeat;
-//        name = "列表循环";
-//        break;
-//      case PlayMode.shuffle:
-//        icon = Icons.shuffle;
-//        name = "随机播放";
-//        break;
-//    }
+    switch (playMode) {
+      case PlayMode.single:
+        icon = Icons.repeat_one;
+        name = "单曲循环";
+        break;
+      case PlayMode.sequence:
+        icon = Icons.repeat;
+        name = "列表循环";
+        break;
+      case PlayMode.shuffle:
+        icon = Icons.shuffle;
+        name = "随机播放";
+        break;
+    }
     return Material(
       elevation: 0.5,
       child: Container(
@@ -86,20 +84,18 @@ class _Header extends StatelessWidget {
           children: <Widget>[
             FlatButton.icon(
                 onPressed: () {
-//                  context.transportControls.setPlayMode(playMode.next);
+                  context.transportControls.setPlayMode(playMode.next);
                 },
                 icon: Icon(icon),
-//                label: Text("$name($count)")),
-                label: Text('3232')),
+                label: Text("$name($count)")),
             Spacer(),
             FlatButton.icon(
                 onPressed: () async {
-//                  final ids = context.playList.queue.map((m) => int.parse(m.mediaId)).toList();
-//                  if (ids.isEmpty) {
-//                    return;
-//                  }
-//                  final succeed = await PlaylistSelectorDialog.addSongs(context, ids);
-                  final succeed = null;
+                  final ids = context.playList.queue.map((m) => int.parse(m.mediaId)).toList();
+                  if (ids.isEmpty) {
+                    return;
+                  }
+                  final succeed = await PlaylistSelectorDialog.addSongs(context, ids);
                   if (succeed == null) {
                     return;
                   }
@@ -159,7 +155,7 @@ class _MusicTile extends StatelessWidget {
     }
     return InkWell(
       onTap: () {
-//        context.transportControls.playFromMediaId(music.metadata.mediaId);
+        context.transportControls.playFromMediaId(music.metadata.mediaId);
       },
       child: Container(
         padding: EdgeInsets.only(left: 8),
@@ -183,7 +179,7 @@ class _MusicTile extends StatelessWidget {
             IconButton(
                 icon: Icon(Icons.close),
                 onPressed: () {
-//                  context.player.removeMusicItem(music.metadata);
+                  context.player.removeMusicItem(music.metadata);
                 })
           ],
         ),

@@ -41,23 +41,23 @@ class _PlayingIndicatorState extends State<PlayingIndicator> {
   @override
   void initState() {
     super.initState();
-//    _player = context.player..addListener(_onMusicStateChanged);
-//    _index = _playerState;
+    _player = context.player..addListener(_onMusicStateChanged);
+    _index = _playerState;
   }
 
   ///get current player state index
-//  int get _playerState => _player.playbackState.isBuffering
-//      ? _INDEX_BUFFERING
-//      : _player.playbackState.isPlaying ? _INDEX_PLAYING : _INDEX_PAUSING;
+  int get _playerState => _player.playbackState.isBuffering
+      ? _INDEX_BUFFERING
+      : _player.playbackState.isPlaying ? _INDEX_PLAYING : _INDEX_PAUSING;
 
   void _onMusicStateChanged() {
-//    final target = _playerState;
-//    if (target == _index) return;
+    final target = _playerState;
+    if (target == _index) return;
 
     final action = CancelableOperation.fromFuture(Future.delayed(_durationDelay));
     _changeStateOperations.add(action);
     action.value.whenComplete(() {
-//      if (target == _playerState) _changeState(target);
+      if (target == _playerState) _changeState(target);
       _changeStateOperations.remove(action);
     });
   }
@@ -104,7 +104,7 @@ class _ProgressTrackContainerState extends State<ProgressTrackContainer> {
   @override
   void initState() {
     super.initState();
-//    _player = context.player..addListener(_onStateChanged);
+    _player = context.player..addListener(_onStateChanged);
     _onStateChanged();
   }
 
@@ -113,8 +113,8 @@ class _ProgressTrackContainerState extends State<ProgressTrackContainer> {
   Timer _timer;
 
   void _onStateChanged() {
-//    final needTrack = context.player.playbackState.isPlaying;
-//    if (_tracking == needTrack) return;
+    final needTrack = context.player.playbackState.isPlaying;
+    if (_tracking == needTrack) return;
     if (_tracking) {
       _tracking = false;
       _timer?.cancel();

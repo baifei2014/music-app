@@ -10,6 +10,7 @@ import 'package:music/repository/netease.dart';
 class BackgroundInterceptors {
   // 获取播放地址
   static Future<String> playUriInterceptor(String mediaId, String fallbackUri) async {
+    print('获取播放地址');
     final result = await neteaseRepository.getPlayUrl(int.parse(mediaId));
     if (result.isError) {
       return fallbackUri;

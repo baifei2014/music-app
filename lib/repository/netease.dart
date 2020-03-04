@@ -173,11 +173,7 @@ class NeteaseRepository {
       print(value);
     });
     final map = result.body;
-
-//    print("打印请求结果 :  \n $map");
-//    if (result.status == 200) {
-//      _saveCookies(result.cookie);
-//    }
+    
     if (map == null) {
       return Result.error('请求失败了');
     } else if (map['code'] == _CODE_NEED_LOGIN) {

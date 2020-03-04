@@ -7,8 +7,8 @@ Handler user_playlist = (query, cookie) {
       'http://192.168.1.75:8080/weapi/user/playlist',
       {
         'uid': query['uid'],
-        'limit': query['limit'] ?? 30,
-        'page': query['page'] ?? 0,
+        'limit': query['limit'] ?? '30',
+        'page': query['page'] ?? '1',
       },
       crypto: Crypto.weapi,
       cookies: const []);

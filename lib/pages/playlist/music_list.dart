@@ -81,7 +81,7 @@ class MusicTileConfiguration extends StatelessWidget {
       Navigator.pushNamed(context, ROUTE_PAYING);
     } else {
       print("触发播放2 : \n");
-      print(music);
+      print(music.metadata);
       context.player.playWithQueue(PlayQueue(queue: list.queue, queueId: list.token, queueTitle: list.token),
           metadata: music.metadata);
     }

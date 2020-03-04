@@ -10,10 +10,12 @@ import 'util/request.dart';
 
 part 'module/user.dart';
 part 'module/playlist.dart';
+part 'module/song.dart';
 
 typedef Handler = Future<Answer> Function(Map query, List<Cookie> cookie);
 
 final handles = <String, Handler>{
   "/user/playlist": user_playlist,
   "/playlist/detail": playlist_detail,
+  "/song/url": song_url,
 };

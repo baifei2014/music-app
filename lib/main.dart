@@ -4,12 +4,14 @@ import 'package:music/component/netease/netease.dart';
 import 'package:music/pages/account/account.dart';
 import 'package:music/pages/splash/page_splash.dart';
 import 'package:music/repository/netease.dart';
+import 'package:music_player/music_player.dart';
 import 'package:netease_music_api/netease_cloud_music.dart' as api;
 import 'package:overlay_support/overlay_support.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'component/global/settings.dart';
+import 'component/player/interceptor.dart';
 import 'component/player/player.dart';
 import 'component/route.dart';
 import 'material/app.dart';
@@ -59,6 +61,10 @@ void playerBackgroundService() {
   WidgetsFlutterBinding.ensureInitialized();
   // 获取播放地址需要使用云音乐 API, 所以需要为此 isolate 初始化一个 repository.
   neteaseRepository = NeteaseRepository();
+  runBackgroundService(
+    imageLoadInterceptor: BackgroundInterceptors.loadImageInterceptor,
+    playUriInterceptor: BackgroundInterceptors.playUriInterceptor,
+  );
 }
 
 class MyApp extends StatelessWidget {
