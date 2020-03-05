@@ -38,9 +38,9 @@ class _MainChatDetailPageState extends State {
   void initState() {
     super.initState();
     msgList = new List();
-    for (var i = 0; i < 8; i+2) {
-      msgList.add({"name": "还欧艾斯", "id": i, "avatarUrl": "https://oss.likecho.com/user_avatar/109951164462932601.jpg"});
-      msgList.add({"name": "陈一发", "id": i+1, "avatarUrl": "http://p1.music.126.net/AlmamjLHkrppEmpP37N74g==/109951164770785633.jpg"});
+    for (var i = 0; i < 8; i = i+2) {
+      msgList.add({"color": LongColor.msg_background_color, "name": "还欧艾斯jhi我胡狗狗会有反弹固有反弹的态度与hihi一月份有覅", "msgAlign": Alignment.centerRight, "direct": TextDirection.rtl, "id": i, "avatarUrl": "https://oss.likecho.com/user_avatar/109951164462932601.jpg"});
+      msgList.add({"color": Colors.white, "name": "陈一个IG与费用分摊联合会预付抚养费用过后会一分一分裕太妃突发故意法语翻译翻译和是交话费有覅一份发", "msgAlign": Alignment.centerLeft, "direct": TextDirection.ltr, "id": i+1, "avatarUrl": "http://p1.music.126.net/AlmamjLHkrppEmpP37N74g==/109951164770785633.jpg"});
     }
   }
   @override
@@ -62,6 +62,7 @@ class _MainChatDetailPageState extends State {
         ),
         backgroundColor: LongColor.chat_app_bar,
       ),
+      backgroundColor: LongColor.chat_app_bar,
       body: CustomScrollView(
           slivers: <Widget>[
             SliverList(
@@ -81,38 +82,10 @@ class ChatMsgTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 56,
-      child: InkWell(
-        onTap: () {
-          // if (list.onMusicTap != null) list.onMusicTap(context, music);
-        },
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            // (list.leadingBuilder ?? _buildPadding)(context, music),
-            Expanded(
-              child: _SimpleMsgTile(msg),
-            ),
-            // (list.trailingBuilder ?? _buildPadding)(context, music),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _SimpleMsgTile extends StatelessWidget {
-  final Map msg;
-
-  const _SimpleMsgTile(this.msg, {Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
     print(msg);
     Widget cover = Container(
       child: ClipRRect(
-        borderRadius: BorderRadius.all(Radius.circular(4)),
+        borderRadius: BorderRadius.all(Radius.circular(2)),
         child: FadeInImage(
           placeholder: AssetImage("assets/playlist_playlist.9.png"),
           image: CachedImage(msg['avatarUrl']),
@@ -122,62 +95,38 @@ class _SimpleMsgTile extends StatelessWidget {
         ),
       ),
     );
+
     return Container(
-        height: 60,
-        child: Row(
-          children: <Widget>[
-            Padding(padding: EdgeInsets.only(left: 16)),
-            cover,
-            Padding(padding: EdgeInsets.only(left: 16)),
-            Expanded(
-              child: Container(
-                alignment: Alignment.centerLeft,
-                decoration: BoxDecoration(
-                  border: Border(bottom: BorderSide(color: Colors.black12, width: 1))///边框颜色、宽
-                ),
-                child: Row(children: <Widget>[
-                  Text(
-                    msg['id'] + msg['name'],
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 15),
-                  ),
-                ],)
+      margin: EdgeInsets.symmetric(vertical: 8, horizontal: 0),
+      child: Row(
+        textDirection: msg['direct'],
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Padding(padding: EdgeInsets.only(left: 16)),
+          cover,
+          Padding(padding: EdgeInsets.only(left: 8)),
+          
+          Expanded(
+            child: Container(
+              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+              decoration: BoxDecoration(
+                color: msg['color'],
+                borderRadius: BorderRadius.all(Radius.circular(4))
               ),
-            ),
-          ]
-        )
+              child: Text(
+                msg['id'].toString() + msg['name'],
+                // overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 15),
+                softWrap: true,
+                textAlign: TextAlign.justify
+              )
+            )
+            
+          ),
+          SizedBox(width: 80,)
+        ]
+      )
     );
-    // return Container(
-    //   height: 56,
-    //   child: Row(
-    //     children: <Widget>[
-    //       Expanded(
-    //           child: Column(
-    //             crossAxisAlignment: CrossAxisAlignment.start,
-    //             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    //             children: <Widget>[
-    //               Spacer(),
-    //               Text(
-    //                 msg['id'].toString(),
-    //                 maxLines: 1,
-    //                 overflow: TextOverflow.ellipsis,
-    //                 style: Theme.of(context).textTheme.body1,
-    //               ),
-    //               Padding(padding: EdgeInsets.only(top: 3)),
-    //               Text(
-    //                 msg['name'],
-    //                 maxLines: 1,
-    //                 overflow: TextOverflow.ellipsis,
-    //                 style: Theme.of(context).textTheme.caption,
-    //               ),
-    //               Spacer(),
-    //             ],
-    //           )
-    //         ),
-    //     ],
-    //   ),
-    // );
   }
 }
 
