@@ -165,7 +165,7 @@ class _BottomChatControllerBar extends StatelessWidget {
                   // focusNode: _focusNode,
                   // style: theme.primaryTextTheme.title,
                   textInputAction: TextInputAction.search,
-                  style: TextStyle(fontSize: 24),
+                  style: TextStyle(fontSize: 18),
                   // onSubmitted: (String _) => _search(query),
                   decoration: InputDecoration(
                     fillColor: Colors.white,
