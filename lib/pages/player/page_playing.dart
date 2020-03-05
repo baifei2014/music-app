@@ -5,13 +5,10 @@ import 'package:flutter/scheduler.dart';
 import 'package:music/component/netease/like_song_list.dart';
 import 'package:music/repository/cached_image.dart';
 import 'package:music_player/music_player.dart';
-import 'package:music/component/netease/netease.dart';
 import 'package:music/material/playing_indicator.dart';
 import 'package:music/pages/artists/page_artist_detail.dart';
-//import 'package:music/pages/comments/page_comment.dart';
 import 'package:music/pages/page_playing_list.dart';
 import 'package:music/part/part.dart';
-import 'package:music/repository/netease.dart';
 
 import 'cover.dart';
 import 'lyric.dart';

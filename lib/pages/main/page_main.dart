@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:music/component/player/bottom_player_bar.dart';
 import 'package:music/component/route.dart';
+import 'package:music/pages/main/main_chat.dart';
 import 'package:music/pages/main/main_playlist.dart';
 import 'package:overlay_support/overlay_support.dart';
 
@@ -25,7 +26,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 2, vsync: this);
+    _tabController = TabController(length: 3, vsync: this);
     _labelStyle = TextStyle(fontSize: 16, fontWeight: FontWeight.bold);
     _unselectedLabelStyle = TextStyle(fontSize: 14, fontWeight: FontWeight.normal);
   }
@@ -51,17 +52,19 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
             }),
         title: Container(
           height: kToolbarHeight,
-          width: 128,
+          width: 192,
           child: TabBar(
             controller: _tabController,
             labelStyle: _labelStyle,
             unselectedLabelStyle: _unselectedLabelStyle,
             indicator: UnderlineTabIndicator(),
+            labelPadding: EdgeInsets.symmetric(horizontal: 8),
             tabs: <Widget>[
-//              Tab(child: Icon(Icons.music_note)),
-//              Tab(child: Icon(Icons.cloud)),
+            //  Tab(child: Icon(Icons.music_note)),
+            //  Tab(child: Icon(Icons.cloud)),
               Tab(text: "我的"),
               Tab(text: '发现'),
+              Tab(text: '聊天'),
             ],
           ),
         ),
@@ -78,7 +81,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
       ),
       body: BoxWithBottomPlayerController(TabBarView(
         controller: _tabController,
-        children: <Widget>[MainPlaylistPage(), MainCloudPage()],
+        children: <Widget>[MainPlaylistPage(), MainCloudPage(), MainChatPage()],
       )),
     );
   }

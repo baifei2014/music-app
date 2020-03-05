@@ -20,6 +20,8 @@ Handler song_url = (query, cookie) {
       'http://192.168.1.75:8080/weapi/song/enhance/player/url',
       {
         'ids': [query['id']],
+
+
         'br': query['br'] ?? '999000',
       },
       crypto: Crypto.weapi,
