@@ -7,7 +7,6 @@ import 'package:music/component/route.dart';
 import 'package:music/material/button.dart';
 import 'package:music/material/dividers.dart';
 import 'package:music/model/playlist_detail.dart';
-import 'package:music/pages/account/account.dart';
 import 'package:music/pages/main/playlist_title.dart';
 import 'package:music/repository/local_cache_data.dart';
 import 'package:music/repository/netease.dart';
