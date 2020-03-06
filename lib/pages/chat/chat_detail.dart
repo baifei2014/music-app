@@ -64,6 +64,7 @@ class _MainChatDetailPageState extends State {
       ),
       backgroundColor: LongColor.chat_app_bar,
       body: CustomScrollView(
+          reverse: true,
           slivers: <Widget>[
             SliverList(
               delegate: SliverChildBuilderDelegate((context, index) => ChatMsgTile(msgList[index]),
@@ -111,7 +112,7 @@ class ChatMsgTile extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
               decoration: BoxDecoration(
                 color: msg['color'],
-                borderRadius: BorderRadius.all(Radius.circular(4))
+                borderRadius: BorderRadius.all(Radius.circular(6))
               ),
               child: Text(
                 msg['id'].toString() + msg['name'],

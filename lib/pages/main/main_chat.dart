@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:music/component/global/color.dart';
 import 'package:music/component/route.dart';
 import 'package:music/material/my_icons.dart';
 import 'package:music/part/part.dart';
@@ -42,7 +43,7 @@ class ChatPageState extends State<MainChatPage>
     return ListView(
       children: <Widget>[
         _MenulistGroup.serializeFriendlist(menuList),
-        Container(height: 16, color: Theme.of(context).dividerColor),
+        Container(height: 24),
         _FriendlistGroup.serializeFriendlist(friendList),
       ]
     );
@@ -102,6 +103,7 @@ class _FriendItemTileDivider extends StatelessWidget{
       },
       child: Container(
         height: 60,
+        color: Colors.white,
         child: Row(
           children: <Widget>[
             Padding(padding: EdgeInsets.only(left: 16)),
@@ -110,9 +112,9 @@ class _FriendItemTileDivider extends StatelessWidget{
             Expanded(
               child: Container(
                 alignment: Alignment.centerLeft,
-                decoration: BoxDecoration(
-                  border: Border(bottom: BorderSide(color: Colors.black12, width: 1))///边框颜色、宽
-                ),
+                // decoration: BoxDecoration(
+                //   border: Border(top: BorderSide(color: LongColor.under_line_color, width: 1))///边框颜色、宽
+                // ),
                 child: Row(children: <Widget>[
                   Text(
                     data['name'],
@@ -178,9 +180,9 @@ class _MenuItemTileDivider extends StatelessWidget {
             Expanded(
               child: Container(
                 alignment: Alignment.centerLeft,
-                decoration: BoxDecoration(
-                  border: Border(bottom: BorderSide(color: Colors.black12, width: 1))///边框颜色、宽
-                ),
+                // decoration: BoxDecoration(
+                //   border: Border(top: BorderSide(color: LongColor.under_line_color, width: 1))///边框颜色、宽
+                // ),
                 child: Row(children: <Widget>[
                   Text(
                     menu['title'],
@@ -227,6 +229,7 @@ class _MenuItemLine extends StatelessWidget {
     return InkWell(
       child: Container(
         height: 60,
+        color: Colors.white,
         child: Row(
           children: <Widget>[
             Padding(padding: EdgeInsets.only(left: 16)),
@@ -236,7 +239,7 @@ class _MenuItemLine extends StatelessWidget {
               child: Container(
                 alignment: Alignment.centerLeft,
                 decoration: BoxDecoration(
-                  border: Border(bottom: BorderSide(color: Colors.black12, width: 1))///边框颜色、宽
+                  border: Border(bottom: BorderSide(color: LongColor.under_line_color, width: 1))///边框颜色、宽
                 ),
                 child: Row(children: <Widget>[
                   Text(
