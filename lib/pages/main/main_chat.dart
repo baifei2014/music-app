@@ -4,6 +4,7 @@ import 'package:music/component/route.dart';
 import 'package:music/material/my_icons.dart';
 import 'package:music/part/part.dart';
 import 'package:music/repository/cached_image.dart';
+import 'package:music/repository/netease.dart';
 import 'package:overlay_support/overlay_support.dart';
 
 class MainChatPage extends StatefulWidget {
@@ -44,7 +45,12 @@ class ChatPageState extends State<MainChatPage>
       children: <Widget>[
         _MenulistGroup.serializeFriendlist(menuList),
         Container(height: 24),
-        _FriendlistGroup.serializeFriendlist(friendList),
+        Loader(
+          loadTask: () => neteaseRepository.userFriendlist(97571233),
+          builder: (context, result) {
+            return _FriendlistGroup.serializeFriendlist(result);
+          }
+        )
       ]
     );
 
@@ -58,7 +64,7 @@ class ChatPageState extends State<MainChatPage>
 }
 
 class _FriendlistGroup extends StatefulWidget {
-  List<Widget> children;
+  final List<Widget> children;
   _FriendlistGroup(this.children) : assert(children != null);
   _FriendlistGroup.serializeFriendlist(List<Map> list) : this(list.map((p) => _FriendItemTileDivider(p)).toList());
 
