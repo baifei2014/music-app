@@ -156,6 +156,15 @@ class NeteaseRepository {
     });
   }
 
+  ///获取好友列表
+  Future<Result<List<Map>>> userFriendlist(int uid) async {
+    final response = await doRequest("/chat/friendlist", {"uid": uid});
+    return _map(response, (Map result) {
+      final list = (result["data"] as List).cast<Map>().map((e) => e).toList();
+      return list;
+    });
+  }
+
   ///[path] request path
   ///[data] parameter
   Future<Result<Map<String, dynamic>>> doRequest(String path, [Map param = const {}]) async {

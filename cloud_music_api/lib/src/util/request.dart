@@ -63,6 +63,7 @@ Future<Answer> request(
     url = url.replaceAll(RegExp(r"\w*api"), 'weapi');
   }
   print("请求链接 : \n $url");
+  print("请求参数: \n $data");
   return _doRequest(url, headers, data, method).then((response) async {
     var ans = Answer(cookie: response.cookies);
 
