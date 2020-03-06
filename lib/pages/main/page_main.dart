@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:music/component/player/bottom_player_bar.dart';
 import 'package:music/component/route.dart';
 import 'package:music/pages/main/main_chat.dart';
+import 'package:music/pages/main/main_dynamic.dart';
 import 'package:music/pages/main/main_playlist.dart';
 import 'package:overlay_support/overlay_support.dart';
 
@@ -60,8 +61,6 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
             indicator: UnderlineTabIndicator(),
             labelPadding: EdgeInsets.symmetric(horizontal: 8),
             tabs: <Widget>[
-            //  Tab(child: Icon(Icons.music_note)),
-            //  Tab(child: Icon(Icons.cloud)),
               Tab(text: "我的"),
               Tab(text: '发现'),
               Tab(text: '聊天'),
