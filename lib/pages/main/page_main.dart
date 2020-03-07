@@ -27,7 +27,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 4, vsync: this);
     _labelStyle = TextStyle(fontSize: 16, fontWeight: FontWeight.bold);
     _unselectedLabelStyle = TextStyle(fontSize: 14, fontWeight: FontWeight.normal);
   }
@@ -53,7 +53,8 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
             }),
         title: Container(
           height: kToolbarHeight,
-          width: 192,
+          // width: 192,
+          width: 256,
           child: TabBar(
             controller: _tabController,
             labelStyle: _labelStyle,
@@ -64,6 +65,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
               Tab(text: "我的"),
               Tab(text: '发现'),
               Tab(text: '聊天'),
+              Tab(text: '动态'),
             ],
           ),
         ),
@@ -80,7 +82,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
       ),
       body: BoxWithBottomPlayerController(TabBarView(
         controller: _tabController,
-        children: <Widget>[MainPlaylistPage(), MainCloudPage(), MainChatPage()],
+        children: <Widget>[MainPlaylistPage(), MainCloudPage(), MainChatPage(), MainDynamicPage()],
       )),
     );
   }

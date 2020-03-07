@@ -18,29 +18,33 @@ class DynamicPageState extends State<MainDynamicPage> with AutomaticKeepAliveCli
     for (var i = 0; i < 10; i = i+2) {
       dynamicList.add({
         "name": "龙豪",
+        'publish_time': '3小时前',
+        'content': '春天来了，还没有褪去冬天的冷，还没有百花争奇斗艳，有的还只是秋天的萧瑟，还在等，等春天的雨水，等春天的嫩芽',
         "id": i,
         "avatarUrl": "https://oss.likecho.com/user_avatar/109951164462932601.jpg",
         "msgType": "text",
-        'content': '你好，我是小沈阳',
+        // 'content': '你好，我是小沈阳',
       });
       dynamicList.add({
         "name": "陈一发",
+        'publish_time': '刚刚',
+        'content': '节日快乐',
         "id": i+1,
         "avatarUrl": "http://p1.music.126.net/AlmamjLHkrppEmpP37N74g==/109951164770785633.jpg",
         "msgType": "text_image",
-        'content': {
-          'text': '肖申呀昂',
-          'imageList': [
-            "http://p1.music.126.net/AlmamjLHkrppEmpP37N74g==/109951164770785633.jpg",
-            "https://oss.likecho.com/user_avatar/109951164462932601.jpg"
-            "http://p1.music.126.net/AlmamjLHkrppEmpP37N74g==/109951164770785633.jpg",
-            "https://oss.likecho.com/user_avatar/109951164462932601.jpg"
-            "http://p1.music.126.net/AlmamjLHkrppEmpP37N74g==/109951164770785633.jpg",
-            "https://oss.likecho.com/user_avatar/109951164462932601.jpg"
-            "http://p1.music.126.net/AlmamjLHkrppEmpP37N74g==/109951164770785633.jpg",
-            "https://oss.likecho.com/user_avatar/109951164462932601.jpg"
-          ]
-        },
+        // 'content': {
+        //   'text': '肖申呀昂',
+        //   'imageList': [
+        //     "http://p1.music.126.net/AlmamjLHkrppEmpP37N74g==/109951164770785633.jpg",
+        //     "https://oss.likecho.com/user_avatar/109951164462932601.jpg"
+        //     "http://p1.music.126.net/AlmamjLHkrppEmpP37N74g==/109951164770785633.jpg",
+        //     "https://oss.likecho.com/user_avatar/109951164462932601.jpg"
+        //     "http://p1.music.126.net/AlmamjLHkrppEmpP37N74g==/109951164770785633.jpg",
+        //     "https://oss.likecho.com/user_avatar/109951164462932601.jpg"
+        //     "http://p1.music.126.net/AlmamjLHkrppEmpP37N74g==/109951164770785633.jpg",
+        //     "https://oss.likecho.com/user_avatar/109951164462932601.jpg"
+        //   ]
+        // },
       });
     }
   }
@@ -100,16 +104,10 @@ class DynamicTile extends StatelessWidget {
           
           Expanded(
             child: Container(
-              padding: EdgeInsets.symmetric(vertical: 4, horizontal: 4),
+              padding: EdgeInsets.symmetric(vertical: 2, horizontal: 8),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(6))
               ),
-              // child: Column(
-              //   crossAxisAlignment: CrossAxisAlignment.start,
-              //   children: <Widget>[
-              //     DynamicContentPage(dynamicInfo),
-              //   ]
-              // )
               child: DynamicContentPage(dynamicInfo),
             )
             
@@ -129,80 +127,180 @@ class DynamicContentPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(contentInfo);
-    if (contentInfo['type'] == 'text') {
-      Widget text = Text(contentInfo['content']);
-      Widget viewCongent = Container(child: text,);
-    }
-    if (contentInfo['type'] == 'text_image') {
-      Widget text = Text(contentInfo['content']['text']);
-      List<Widget> imageList = new List();
-      Widget image;
-      Widget imageViewCongent;
-      for (var i = 0; i < contentInfo['imageList'].length; i++) {
-        image = ClipRRect(
-          borderRadius: BorderRadius.all(Radius.circular(2)),
-          child: FadeInImage(
-            placeholder: AssetImage("assets/playlist_playlist.9.png"),
-            image: CachedImage(contentInfo['imageList'][i]),
-            fit: BoxFit.cover,
-            height: 40,
-            width: 40,
-          ),
-        );
-        imageList.add(image);
-      }
-      if (contentInfo['imageList'].length == 4) {
-        imageViewCongent = GridView(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2, //横轴三个子widget
-            childAspectRatio: 1.0 //宽高比为1时，子widget
-          ),
-          children: imageList
-        );
-      } else {
-        imageViewCongent = GridView(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3, //横轴三个子widget
-            childAspectRatio: 1.0 //宽高比为1时，子widget
-          ),
-          children: imageList
-        );
-      }
-      Widget viewCongent = Wrap(
-        children: <Widget>[
-          text,
-          imageViewCongent
-        ],
-      );
-    }
-    // print(viewCongent);
-    // return Container(
-    //   child: viewCongent,
-    // );
+    List imageItems = [
+      {
+        'url': 'https://oss.likecho.com/user_avatar/109951164462932601.jpg'
+      },
+      {
+        'url': 'https://oss.likecho.com/user_avatar/109951164462932601.jpg'
+      },
+      {
+        'url': 'https://oss.likecho.com/user_avatar/109951164462932601.jpg'
+      },
+      {
+        'url': 'https://oss.likecho.com/user_avatar/109951164462932601.jpg'
+      },
+      {
+        'url': 'https://oss.likecho.com/user_avatar/109951164462932601.jpg'
+      },
+    ];
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         
-        Text('年后'),
-        Text('年年年年年后后后后年年年年后后后后年年年年年年后后后后年年年年年后后后后后后后后'),
+        Text(
+          contentInfo['name'],
+          style: TextStyle(
+            color: Color(0xff2C3E50),
+            fontSize: 16,
+            fontWeight: FontWeight.w500
+          ),
+        ),
+        Text(
+          contentInfo['publish_time'],
+          style: TextStyle(
+            color: Colors.black26,
+            fontSize: 12,
+            // fontWeight: FontWeight.w500
+          ),
+        ),
+        SizedBox(height: 4,),
+        Text(
+          contentInfo['content'],
+          style: TextStyle(
+            fontSize: 14,
+            // fontWeight: FontWeight.w500
+          ),
+        ),
+        SizedBox(height: 10,),
         Container(
-          child: GridView(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3, //横轴三个子widget
-                childAspectRatio: 1.0 //宽高比为1时，子widget
+          child: Flow(
+            delegate: ImageFlowDelegate(
+              count: imageItems.length,
             ),
-            children:<Widget>[
-              Icon(Icons.ac_unit),
-              Icon(Icons.airport_shuttle),
-              Icon(Icons.all_inclusive),
-              Icon(Icons.beach_access),
-              Icon(Icons.cake),
-              Icon(Icons.free_breakfast)
-            ]
+            children: imageItems.map<Widget>((image) => flowImageItem(image)).toList(),
           ),
         )
       ],
     );
+  }
+
+  Widget flowImageItem(Map image) {
+    return ClipRRect(
+      // borderRadius: BorderRadius.all(Radius.circular(2)),
+      child: FadeInImage(
+        placeholder: AssetImage("assets/playlist_playlist.9.png"),
+        image: CachedImage(image['url']),
+        fit: BoxFit.cover,
+      ),
+    );
+  }
+
+  // flowImageItem() {
+
+  // }
+}
+
+class ImageFlowDelegate extends FlowDelegate {
+  final int count;
+  final double gap;
+  ImageFlowDelegate({
+    @required this.count,
+    this.gap = 5.0,
+  });
+
+  var columns = 3;
+  var rows = 3;
+  double itemW = 0;
+  double itemH = 0;
+  double totalW = 0;
+
+  @override
+  void paintChildren(FlowPaintingContext context) {
+    var x = 0.0;
+    var y = 0.0;
+
+    /// 需要重新计算,解决刷新值为0的问题
+    getItemSize();
+    getColumnsNumber(count);
+    totalW = (itemW * rows) + (gap * (rows + 1));
+
+    //计算每一个子widget的位置 
+    for (var i = 0; i < count; i++) {
+      var w = context.getChildSize(i).width + x;
+      if (w < totalW) {
+        context.paintChild(i,
+            transform: new Matrix4.translationValues(
+                x, y, 0.0));
+        x += context.getChildSize(i).width + gap;
+      } else {
+        x = 0.0;
+        y += context.getChildSize(i).height + gap;
+        context.paintChild(i,
+            transform: new Matrix4.translationValues(
+                x, y, 0.0));
+        x += context.getChildSize(i).width + gap;
+      }
+    }
+  }
+  
+  getColumnsNumber(int length) {
+    if (length == 4) {
+      columns = 2;
+      rows = 2;
+    } else {
+      rows = 3;
+      if (length % 3 == 0) {
+        columns = length ~/ 3;
+      } else {
+        columns = (length ~/ 3 + 1);
+      }
+    }
+  }
+
+  getItemSize() {
+    if (count == 1) {
+      itemW = 120;
+      itemH = 120;
+    }else if (count <= 3){
+      itemW = 80;
+      itemH = 80;
+    }else if (count <= 6) {
+      itemW = 70;
+      itemH = 70;
+      if (count == 4) {
+        itemW = 80;
+        itemH = 80;
+      }
+    } else {
+      itemW = 60;
+      itemH = 60;
+    }
+  }
+
+  /// 设置每个子view的size
+  getConstraintsForChild(int i, BoxConstraints constraints) {
+    getItemSize();
+    return BoxConstraints(
+      minWidth: itemW,
+      minHeight: itemH,
+      maxWidth: itemW,
+      maxHeight: itemH
+    );
+
+  }
+
+  /// 设置flow的size
+  getSize(BoxConstraints constraints){ 
+    getColumnsNumber(count);
+    getItemSize();
+    double h = (columns * itemH) + ((columns - 1) * gap);
+    totalW = (itemW * rows) + (gap * (rows + 1));
+    return Size(totalW, h);
+  }
+  
+  @override
+  bool shouldRepaint(FlowDelegate oldDelegate) {
+    return oldDelegate != this;
   }
 }
