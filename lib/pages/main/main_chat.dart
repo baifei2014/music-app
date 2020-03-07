@@ -49,13 +49,6 @@ class ChatPageState extends State<MainChatPage>
         )
       ]
     );
-
-
-        // _NavigationLine(),
-        // _Header("推荐歌单", () {}),
-//        _SectionPlaylist(),
-        // _Header("最新音乐", () {}),
-//        _SectionNewSongs(),
   }
 }
 
@@ -100,7 +93,7 @@ class _FriendItemTileDivider extends StatelessWidget{
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => ChatDetailPage(data['groupId'])
+                builder: (context) => ChatDetailPage(data['name'], data['groupId'])
             ));
       },
       child: Container(
