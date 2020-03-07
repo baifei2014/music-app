@@ -5,9 +5,10 @@ import 'package:music/repository/cached_image.dart';
 import 'package:music/repository/netease.dart';
 
 class ChatDetailPage extends StatefulWidget {
+  final String name;
   final String groupId;
 
-  ChatDetailPage(this.groupId) : assert(groupId != null);
+  ChatDetailPage(this.name, this.groupId) : assert(name != null, groupId != null);
 
   State<StatefulWidget> createState() => ChatDetailPageState();
 }
@@ -24,7 +25,7 @@ class ChatDetailPageState extends State<ChatDetailPage> {
         Loader(
           loadTask: () => neteaseRepository.chatMessagelist(widget.groupId),
           builder: (context, result) {
-            return _MainChatDetailPage(result);
+            return _MainChatDetailPage(widget.name, result);
           },
         ),
       )
@@ -33,8 +34,9 @@ class ChatDetailPageState extends State<ChatDetailPage> {
 }
 
 class _MainChatDetailPage extends StatefulWidget {
+  final String name;
   final List<Map> messagelist;
-  _MainChatDetailPage(this.messagelist) : assert(messagelist != null);
+  _MainChatDetailPage(this.name, this.messagelist) : assert(name != null, messagelist != null);
   @override
   _MainChatDetailPageState createState() {
      return new _MainChatDetailPageState();
@@ -56,7 +58,7 @@ class _MainChatDetailPageState extends State<_MainChatDetailPage> {
             onPressed: () => Navigator.pop(context)),
         titleSpacing: 0,
         title: Text(
-          '陈一发',
+          widget.name,
           style: TextStyle(fontSize: 18, color: LongColor.chat_font_theme),
         ),
         backgroundColor: LongColor.chat_app_bar,
