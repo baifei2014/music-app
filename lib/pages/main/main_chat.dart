@@ -25,7 +25,6 @@ class ChatPageState extends State<MainChatPage>
   bool get wantKeepAlive => true;
 
   List<Map> menuList;
-  List<Map> friendList;
 
   void initState() {
     super.initState();
@@ -33,9 +32,6 @@ class ChatPageState extends State<MainChatPage>
     menuList.add({"title": '新的朋友', "icon": MyIcons.icon_morenzhuangtai_xindepengyou, "color": Color(0xFFffa400)});
     menuList.add({"title": '群聊', "icon": MyIcons.icon_qunliao, "color": Color(0xFF00e079)});
     menuList.add({"title": '标签', "icon": MyIcons.icon_biaoqian, "color": Color(0xFF4b5cc4)});
-    friendList = new List();
-    friendList.add({"name": "龙豪", "avatarUrl": "https://oss.likecho.com/user_avatar/109951164462932601.jpg"});
-    friendList.add({"name": "陈一发", "avatarUrl": "http://p1.music.126.net/AlmamjLHkrppEmpP37N74g==/109951164770785633.jpg"});
   }
 
   @override
@@ -104,7 +100,7 @@ class _FriendItemTileDivider extends StatelessWidget{
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => ChatDetail()
+                builder: (context) => ChatDetailPage(data['groupId'])
             ));
       },
       child: Container(
@@ -178,6 +174,7 @@ class _MenuItemTileDivider extends StatelessWidget {
     return InkWell(
       child: Container(
         height: 60,
+        color: Colors.white,
         child: Row(
           children: <Widget>[
             Padding(padding: EdgeInsets.only(left: 16)),

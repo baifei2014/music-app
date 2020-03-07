@@ -144,11 +144,8 @@ class NeteaseRepository {
   ///根据用户ID获取歌单
   ///PlayListDetail 中的 tracks 都是空数据
   Future<Result<List<PlaylistDetail>>> userPlaylist(int userId, [int page = 1, int limit = 1000]) async {
-    print("当前分页 : \n $page");
     final response = await doRequest("/user/playlist", {"page": page, "uid": userId, "limit": limit});
 
-    print("用户歌单列表 : \n");
-    print(response);
     return _map(response, (Map result) {
       final list = (result["playlist"] as List).cast<Map>().map((e) => PlaylistDetail.fromJson(e)).toList();
 //      neteaseLocalData.updateUserPlaylist(userId, list);
@@ -161,6 +158,16 @@ class NeteaseRepository {
     final response = await doRequest("/chat/friendlist", {"uid": uid});
     return _map(response, (Map result) {
       final list = (result["data"] as List).cast<Map>().map((e) => e).toList();
+      return list;
+    });
+  }
+
+  ///获取消息对话
+  ///每次加载50条
+  Future<Result<List<Map>>> chatMessagelist(String groupId) async {
+    final response = await doRequest("/chat/messagelist", {"group_id": groupId});
+    return _map(response, (Map result) {
+      final list = (result["message_list"] as List).cast<Map>().map((e) => e).toList();
       return list;
     });
   }

@@ -18,4 +18,5 @@ final handles = <String, Handler>{
   "/playlist/detail": playlist_detail,
   "/song/url": song_url,
   "/chat/friendlist": chat_friendlist,
+  "/chat/messagelist": chat_messagelist,
 };

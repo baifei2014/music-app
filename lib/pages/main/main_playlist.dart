@@ -49,17 +49,14 @@ class _MainPlaylistState extends State<MainPlaylistPage> with AutomaticKeepAlive
               ]);
             },
             errorBuilder: (context, result) {
-              debugPrint("歌单列表 : \n $result");
               return ListView(children: [
                 _PinnedHeader(),
                 Loader.buildSimpleFailedWidget(context, result),
               ]);
             },
             builder: (context, result) {
-              debugPrint("歌单列表 : \n $result");
               final created = result.where((p) => p.creator["userId"] == userId).toList();
               final subscribed = result.where((p) => p.creator["userId"] != userId).toList();
-              print(result.map((e) => PlaylistDetail.dump(e)));
               return ListView(children: [
                 _PinnedHeader(),
                 _ExpansionPlaylistGroup.fromPlaylist(

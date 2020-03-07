@@ -4,19 +4,28 @@ import 'package:music/part/part.dart';
 import 'package:music/repository/cached_image.dart';
 import 'package:music/repository/netease.dart';
 
+class ChatDetailPage extends StatefulWidget {
+  final String groupId;
 
-class ChatDetail extends StatelessWidget {
+  ChatDetailPage(this.groupId) : assert(groupId != null);
+
+  State<StatefulWidget> createState() => ChatDetailPageState();
+}
+
+class ChatDetailPageState extends State<ChatDetailPage> {
   final int targetUserId = 100;
   @override
   Widget build(BuildContext context) {
+    print('聊天详情页内容 : \n');
+    print(context);
     return Scaffold(
       backgroundColor: LongColor.chat_app_bar,
       resizeToAvoidBottomInset: false,
       body: _BoxWithBottomChatController(
         Loader(
-          loadTask: () => neteaseRepository.playlistDetail(115392005),
+          loadTask: () => neteaseRepository.chatMessagelist(widget.groupId),
           builder: (context, result) {
-            return _MainChatDetailPage();
+            return _MainChatDetailPage(result);
           },
         ),
       )
@@ -25,24 +34,15 @@ class ChatDetail extends StatelessWidget {
 }
 
 class _MainChatDetailPage extends StatefulWidget {
+  final List<Map> messagelist;
+  _MainChatDetailPage(this.messagelist) : assert(messagelist != null);
   @override
   _MainChatDetailPageState createState() {
      return new _MainChatDetailPageState();
   }
 }
 
-class _MainChatDetailPageState extends State {
-  List msgList;
-
-  @override
-  void initState() {
-    super.initState();
-    msgList = new List();
-    for (var i = 0; i < 8; i = i+2) {
-      msgList.add({"color": LongColor.msg_background_color, "name": "还欧艾斯jhi我胡狗狗会有反弹固有反弹的态度与hihi一月份有覅", "msgAlign": Alignment.centerRight, "direct": TextDirection.rtl, "id": i, "avatarUrl": "https://oss.likecho.com/user_avatar/109951164462932601.jpg"});
-      msgList.add({"color": Colors.white, "name": "陈一个IG与费用分摊联合会预付抚养费用过后会一分一分裕太妃突发故意法语翻译翻译和是交话费有覅一份发", "msgAlign": Alignment.centerLeft, "direct": TextDirection.ltr, "id": i+1, "avatarUrl": "http://p1.music.126.net/AlmamjLHkrppEmpP37N74g==/109951164770785633.jpg"});
-    }
-  }
+class _MainChatDetailPageState extends State<_MainChatDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,8 +67,8 @@ class _MainChatDetailPageState extends State {
           reverse: true,
           slivers: <Widget>[
             SliverList(
-              delegate: SliverChildBuilderDelegate((context, index) => ChatMsgTile(msgList[index]),
-                  childCount: msgList.length),
+              delegate: SliverChildBuilderDelegate((context, index) => ChatMsgTile(widget.messagelist[index]),
+                  childCount: widget.messagelist.length),
             ),
           ]
         ),
@@ -100,7 +100,8 @@ class ChatMsgTile extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 8, horizontal: 0),
       child: Row(
-        textDirection: msg['direct'],
+        // textDirection: msg['direct'],
+        textDirection: TextDirection.rtl,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Padding(padding: EdgeInsets.only(left: 16)),
@@ -111,11 +112,12 @@ class ChatMsgTile extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
               decoration: BoxDecoration(
-                color: msg['color'],
+                // color: msg['color'],
+                color: LongColor.msg_background_color,
                 borderRadius: BorderRadius.all(Radius.circular(6))
               ),
               child: Text(
-                msg['id'].toString() + msg['name'],
+                msg['content'],
                 // overflow: TextOverflow.ellipsis,
                 style: TextStyle(fontSize: 15),
                 softWrap: true,
