@@ -69,11 +69,6 @@ class PlaylistDetail {
         playlist["playCount"]);
   }
 
-  static void dump(PlaylistDetail playlist) {
-    print('歌单元素: \n');
-    print(playlist);
-  }
-
   static PlaylistDetail fromMap(Map map) {
     if (map == null) {
       return null;

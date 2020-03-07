@@ -26,23 +26,13 @@ const ROUTE_SETTING = '/setting';
 
 const ROUTE_SETTING_THEME = '/setting/theme';
 
-const ROUTE_CHAT_DETAIL = '/chat/detail';
 
 const pageWelcome = 'welcome';
 
 ///app routers
 final Map<String, WidgetBuilder> routes = {
   pageMain: (context) => MainPage(),
-//  pageLogin: (context) => LoginNavigator(),
   ROUTE_PAYING: (context) => PlayingPage(),
-  ROUTE_CHAT_DETAIL: (context) => ChatDetail(),
-//  ROUTE_LEADERBOARD: (context) => LeaderboardPage(),
-//  ROUTE_DAILY: (context) => DailyPlaylistPage(),
-//  ROUTE_MY_DJ: (context) => MyDjPage(),
-//  ROUTE_MY_COLLECTION: (context) => MyCollectionPage(),
-//  ROUTE_SETTING: (context) => SettingPage(),
-//  ROUTE_SETTING_THEME: (context) => SettingThemePage(),
-//  pageWelcome: (context) => PageWelcome(),
 };
 
 Route<dynamic> routeFactory(RouteSettings settings) {

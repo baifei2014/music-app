@@ -54,8 +54,6 @@ Future<Answer> request(
       String ua,
       Crypto crypto = Crypto.weapi,
     }) async {
-  print('刚传入的链接 : \n');
-  print(url);
   final headers = _buildHeader(url, ua, method, cookies);
   if (crypto == Crypto.weapi) {
     var csrfToken = cookies.firstWhere((c) => c.name == "__csrf", orElse: () => null);
@@ -69,8 +67,6 @@ Future<Answer> request(
 
     final content = await response.cast<List<int>>().transform(utf8.decoder).join();
     final body = json.decode(content);
-    print("请求路由 : \n $url");
-    print("返回数据内容 : \n $body");
     ans = ans.copy(status: int.parse(body['code'].toString()) ?? response.statusCode, body: body);
 
     ans = ans.copy(status: ans.status > 100 && ans.status < 600 ? ans.status : 400);
