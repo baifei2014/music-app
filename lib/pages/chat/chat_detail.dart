@@ -13,7 +13,6 @@ class ChatDetailPage extends StatefulWidget {
 }
 
 class ChatDetailPageState extends State<ChatDetailPage> {
-  final int targetUserId = 100;
   @override
   Widget build(BuildContext context) {
     print('聊天详情页内容 : \n');
@@ -79,11 +78,21 @@ class _MainChatDetailPageState extends State<_MainChatDetailPage> {
 class ChatMsgTile extends StatelessWidget {
   final Map msg;
 
+  final msgStyle = {
+    'self': {
+      'color': LongColor.msg_background_color,
+      'textDirection': TextDirection.rtl
+    },
+    'other': {
+      'color': Colors.white,
+      'textDirection': TextDirection.ltr
+    }
+  };
+
   ChatMsgTile(this.msg, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    print(msg);
     Widget cover = Container(
       child: ClipRRect(
         borderRadius: BorderRadius.all(Radius.circular(2)),
@@ -100,8 +109,7 @@ class ChatMsgTile extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 8, horizontal: 0),
       child: Row(
-        // textDirection: msg['direct'],
-        textDirection: TextDirection.rtl,
+        textDirection: msg['is_self'] ? msgStyle['self']['textDirection'] : msgStyle['other']['textDirection'],
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Padding(padding: EdgeInsets.only(left: 16)),
@@ -112,8 +120,7 @@ class ChatMsgTile extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
               decoration: BoxDecoration(
-                // color: msg['color'],
-                color: LongColor.msg_background_color,
+                color: msg['is_self'] ? msgStyle['self']['color'] : msgStyle['other']['color'],
                 borderRadius: BorderRadius.all(Radius.circular(6))
               ),
               child: Text(
