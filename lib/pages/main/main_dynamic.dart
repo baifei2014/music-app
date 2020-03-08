@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:music/component/global/color.dart';
 import 'package:music/repository/cached_image.dart';
 
 class MainDynamicPage extends StatefulWidget {
@@ -16,35 +15,32 @@ class DynamicPageState extends State<MainDynamicPage> with AutomaticKeepAliveCli
     super.initState();
     dynamicList = new List();
     for (var i = 0; i < 10; i = i+2) {
+
       dynamicList.add({
         "name": "龙豪",
-        'publish_time': '3小时前',
+        'publish_time': (i + 1).toString() + '小时前',
         'content': '春天来了，还没有褪去冬天的冷，还没有百花争奇斗艳，有的还只是秋天的萧瑟，还在等，等春天的雨水，等春天的嫩芽',
         "id": i,
-        "avatarUrl": "https://oss.likecho.com/user_avatar/109951164462932601.jpg",
-        "msgType": "text",
-        // 'content': '你好，我是小沈阳',
+        "avatar_url": "https://oss.likecho.com/user_avatar/109951164462932601.jpg",
+        "msg_type": "text",
+        'content': {
+          'text': '你好，我是小沈阳'
+        }
       });
       dynamicList.add({
         "name": "陈一发",
-        'publish_time': '刚刚',
+        'publish_time': (i + 2).toString() + '小时前',
         'content': '节日快乐',
         "id": i+1,
-        "avatarUrl": "http://p1.music.126.net/AlmamjLHkrppEmpP37N74g==/109951164770785633.jpg",
-        "msgType": "text_image",
-        // 'content': {
-        //   'text': '肖申呀昂',
-        //   'imageList': [
-        //     "http://p1.music.126.net/AlmamjLHkrppEmpP37N74g==/109951164770785633.jpg",
-        //     "https://oss.likecho.com/user_avatar/109951164462932601.jpg"
-        //     "http://p1.music.126.net/AlmamjLHkrppEmpP37N74g==/109951164770785633.jpg",
-        //     "https://oss.likecho.com/user_avatar/109951164462932601.jpg"
-        //     "http://p1.music.126.net/AlmamjLHkrppEmpP37N74g==/109951164770785633.jpg",
-        //     "https://oss.likecho.com/user_avatar/109951164462932601.jpg"
-        //     "http://p1.music.126.net/AlmamjLHkrppEmpP37N74g==/109951164770785633.jpg",
-        //     "https://oss.likecho.com/user_avatar/109951164462932601.jpg"
-        //   ]
-        // },
+        "avatar_url": "http://p1.music.126.net/AlmamjLHkrppEmpP37N74g==/109951164770785633.jpg",
+        "msg_type": "text_image",
+        'content': {
+          'text': '肖申呀昂',
+          'image_list': [
+            'http://p1.music.126.net/AlmamjLHkrppEmpP37N74g==/109951164770785633.jpg',
+            'https://oss.likecho.com/user_avatar/109951164462932601.jpg'
+          ]
+        },
       });
     }
   }
@@ -82,7 +78,7 @@ class DynamicTile extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(2)),
         child: FadeInImage(
           placeholder: AssetImage("assets/playlist_playlist.9.png"),
-          image: CachedImage(dynamicInfo['avatarUrl']),
+          image: CachedImage(dynamicInfo['avatar_url']),
           fit: BoxFit.cover,
           height: 40,
           width: 40,
@@ -93,7 +89,8 @@ class DynamicTile extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 16, horizontal: 2),
       decoration: BoxDecoration(
-        border: Border(bottom: BorderSide(color: LongColor.under_line_color, width: 0.8))///边框颜色、宽
+        color: Colors.white,
+        border: Border(bottom: BorderSide(color: Theme.of(context).dividerColor, width: 1))///边框颜色、宽
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -127,23 +124,7 @@ class DynamicContentPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List imageItems = [
-      {
-        'url': 'https://oss.likecho.com/user_avatar/109951164462932601.jpg'
-      },
-      {
-        'url': 'https://oss.likecho.com/user_avatar/109951164462932601.jpg'
-      },
-      {
-        'url': 'https://oss.likecho.com/user_avatar/109951164462932601.jpg'
-      },
-      {
-        'url': 'https://oss.likecho.com/user_avatar/109951164462932601.jpg'
-      },
-      {
-        'url': 'https://oss.likecho.com/user_avatar/109951164462932601.jpg'
-      },
-    ];
+    print(contentInfo);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -151,9 +132,9 @@ class DynamicContentPage extends StatelessWidget {
         Text(
           contentInfo['name'],
           style: TextStyle(
-            color: Color(0xff2C3E50),
-            fontSize: 16,
-            fontWeight: FontWeight.w500
+            color: Color(0xff175397),
+            fontSize: 18,
+            fontWeight: FontWeight.w600
           ),
         ),
         Text(
@@ -165,32 +146,78 @@ class DynamicContentPage extends StatelessWidget {
           ),
         ),
         SizedBox(height: 4,),
-        Text(
-          contentInfo['content'],
-          style: TextStyle(
-            fontSize: 14,
-            // fontWeight: FontWeight.w500
-          ),
-        ),
-        SizedBox(height: 10,),
-        Container(
-          child: Flow(
-            delegate: ImageFlowDelegate(
-              count: imageItems.length,
-            ),
-            children: imageItems.map<Widget>((image) => flowImageItem(image)).toList(),
-          ),
-        )
+        previewMsgContentItem(contentInfo)
+        // Text(
+        //   contentInfo['content'],
+        //   style: TextStyle(
+        //     fontSize: 16,
+        //     // fontWeight: FontWeight.w500
+        //   ),
+        // ),
+        // SizedBox(height: 10,),
+        // Container(
+        //   child: Flow(
+        //     delegate: ImageFlowDelegate(
+        //       count: imageItems.length,
+        //     ),
+        //     children: imageItems.map<Widget>((image) => flowImageItem(image)).toList(),
+        //   ),
+        // )
       ],
     );
   }
 
-  Widget flowImageItem(Map image) {
+  previewMsgContentItem(Map message) {
+    Widget content;
+    switch (message['msg_type']) {
+      case 'text_image':
+        content = Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              contentInfo['content']['text'],
+              style: TextStyle(
+                fontSize: 16,
+                // fontWeight: FontWeight.w500
+              ),
+            ),
+            SizedBox(height: 10,),
+            Container(
+              child: Flow(
+                delegate: ImageFlowDelegate(
+                  count: message['content']['image_list'].length,
+                ),
+                children: message['content']['image_list'].map<Widget>((image) => flowImageItem(image)).toList(),
+              ),
+            )
+          ]
+        );
+        break;
+      case 'text':
+        content = Column(
+          children: <Widget>[
+            Text(
+              contentInfo['content']['text'],
+              style: TextStyle(
+                fontSize: 16,
+                // fontWeight: FontWeight.w500
+              ),
+            )
+          ]
+        );
+        break;
+    }
+
+    return content;
+  }
+
+  Widget flowImageItem(String image) {
+    print(image);
     return ClipRRect(
       // borderRadius: BorderRadius.all(Radius.circular(2)),
       child: FadeInImage(
         placeholder: AssetImage("assets/playlist_playlist.9.png"),
-        image: CachedImage(image['url']),
+        image: CachedImage(image),
         fit: BoxFit.cover,
       ),
     );

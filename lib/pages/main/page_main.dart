@@ -42,6 +42,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
+      backgroundColor: Theme.of(context).dividerColor,
       appBar: AppBar(
         leading: IconButton(
             icon: AnimatedIcon(

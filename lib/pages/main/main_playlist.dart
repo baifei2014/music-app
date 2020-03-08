@@ -111,23 +111,26 @@ class _PinnedHeader extends StatelessWidget {
                 Navigator.pushNamed(context, ROUTE_MY_DJ);
               },
             )),
-        ListTile(
-          leading: Icon(
-            Icons.library_music,
-            color: Theme.of(context).iconTheme.color,
+        Container(
+          color: Colors.white,
+          child: ListTile(
+            leading: Icon(
+              Icons.library_music,
+              color: Theme.of(context).iconTheme.color,
+            ),
+            title: Text.rich(TextSpan(children: [
+              TextSpan(text: '我的收藏 '),
+              TextSpan(
+                  style: const TextStyle(fontSize: 13, color: Colors.grey),
+                  text: '123',
+              )
+            ])),
+            onTap: () {
+              Navigator.pushNamed(context, ROUTE_MY_COLLECTION);
+            },
           ),
-          title: Text.rich(TextSpan(children: [
-            TextSpan(text: '我的收藏 '),
-            TextSpan(
-                style: const TextStyle(fontSize: 13, color: Colors.grey),
-                text: '123',
-            )
-          ])),
-          onTap: () {
-            Navigator.pushNamed(context, ROUTE_MY_COLLECTION);
-          },
         ),
-        Container(height: 8, color: Theme.of(context).dividerColor)
+        Container(height: 16)
       ]..removeWhere((v) => v == null),
     );
   }
@@ -254,10 +257,13 @@ class _ExpansionPlaylistGroupState extends State<_ExpansionPlaylistGroup> with S
   @override
   Widget build(BuildContext context) {
     final bool closed = !_expanded && _controller.isDismissed;
-    return AnimatedBuilder(
-      animation: _controller.view,
-      builder: _buildChildren,
-      child: closed ? null : Column(children: widget.children),
+    return Container(
+      color: Colors.white,
+      child: AnimatedBuilder(
+        animation: _controller.view,
+        builder: _buildChildren,
+        child: closed ? null : Column(children: widget.children),
+      )
     );
   }
 }
