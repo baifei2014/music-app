@@ -15,7 +15,19 @@ class DynamicPageState extends State<MainDynamicPage> with AutomaticKeepAliveCli
     super.initState();
     dynamicList = new List();
     for (var i = 0; i < 10; i = i+3) {
-
+      dynamicList.add({
+        "name": "钢铁侠",
+        'publish_time': (i + 1).toString() + '小时前',
+        "id": i,
+        "avatar_url": "https://oss.likecho.com/user_avatar/109951164781835480.jpg",
+        "msg_type": "text_image",
+        'content': {
+          'text': 'I’m Iron Man',
+          'image_list': [
+            'https://oss.likecho.com/temp/iron.jpg',
+          ]
+        },
+      });
       dynamicList.add({
         "name": "龙豪",
         'publish_time': (i + 1).toString() + '小时前',
