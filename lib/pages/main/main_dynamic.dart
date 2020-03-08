@@ -19,12 +19,11 @@ class DynamicPageState extends State<MainDynamicPage> with AutomaticKeepAliveCli
       dynamicList.add({
         "name": "龙豪",
         'publish_time': (i + 1).toString() + '小时前',
-        'content': '春天来了，还没有褪去冬天的冷，还没有百花争奇斗艳，有的还只是秋天的萧瑟，还在等，等春天的雨水，等春天的嫩芽',
         "id": i,
         "avatar_url": "https://oss.likecho.com/user_avatar/109951164462932601.jpg",
         "msg_type": "text_image",
         'content': {
-          'text': '去年今日此门中，人面桃花相映红',
+          'text': '我多么希望，有一个门口\n早晨，阳光照在草上我们站着\n扶着自己的门窗\n门很低\n但太阳是明亮的',
           'image_list': [
             'https://oss.likecho.com/album_pic/18747772766555079.jpg',
             'https://oss.likecho.com/album_pic/109951164194813269.jpg',
@@ -36,18 +35,16 @@ class DynamicPageState extends State<MainDynamicPage> with AutomaticKeepAliveCli
       dynamicList.add({
         "name": "陈一发",
         'publish_time': (i + 2).toString() + '小时前',
-        'content': '节日快乐',
         "id": i+1,
         "avatar_url": "http://p1.music.126.net/AlmamjLHkrppEmpP37N74g==/109951164770785633.jpg",
         "msg_type": "text",
         'content': {
-          'text': '昨夜星辰昨夜风，画楼西畔桂堂东',
+          'text': '江南无所有，聊赠一枝春',
         },
       });
       dynamicList.add({
         "name": "陈一发",
         'publish_time': (i + 3).toString() + '小时前',
-        'content': '节日快乐',
         "avatar_url": "https://oss.likecho.com/user_avatar/109951164777049592.jpg",
         "msg_type": "image",
         'content': {
@@ -148,7 +145,7 @@ class DynamicContentPage extends StatelessWidget {
           contentInfo['name'],
           style: TextStyle(
             color: Color(0xff175397),
-            fontSize: 18,
+            fontSize: 17,
             fontWeight: FontWeight.w600
           ),
         ),
@@ -156,7 +153,7 @@ class DynamicContentPage extends StatelessWidget {
           contentInfo['publish_time'],
           style: TextStyle(
             color: Colors.black26,
-            fontSize: 12,
+            fontSize: 10,
             // fontWeight: FontWeight.w500
           ),
         ),
