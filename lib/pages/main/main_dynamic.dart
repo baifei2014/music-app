@@ -14,7 +14,7 @@ class DynamicPageState extends State<MainDynamicPage> with AutomaticKeepAliveCli
   void initState() {
     super.initState();
     dynamicList = new List();
-    for (var i = 0; i < 10; i = i+2) {
+    for (var i = 0; i < 10; i = i+3) {
 
       dynamicList.add({
         "name": "龙豪",
@@ -22,10 +22,16 @@ class DynamicPageState extends State<MainDynamicPage> with AutomaticKeepAliveCli
         'content': '春天来了，还没有褪去冬天的冷，还没有百花争奇斗艳，有的还只是秋天的萧瑟，还在等，等春天的雨水，等春天的嫩芽',
         "id": i,
         "avatar_url": "https://oss.likecho.com/user_avatar/109951164462932601.jpg",
-        "msg_type": "text",
+        "msg_type": "text_image",
         'content': {
-          'text': '你好，我是小沈阳'
-        }
+          'text': '去年今日此门中，人面桃花相映红',
+          'image_list': [
+            'https://oss.likecho.com/album_pic/18747772766555079.jpg',
+            'https://oss.likecho.com/album_pic/109951164194813269.jpg',
+            'https://oss.likecho.com/album_pic/109951164577862385.jpg',
+            'https://oss.likecho.com/album_pic/109951164577862394.jpg'
+          ]
+        },
       });
       dynamicList.add({
         "name": "陈一发",
@@ -33,9 +39,18 @@ class DynamicPageState extends State<MainDynamicPage> with AutomaticKeepAliveCli
         'content': '节日快乐',
         "id": i+1,
         "avatar_url": "http://p1.music.126.net/AlmamjLHkrppEmpP37N74g==/109951164770785633.jpg",
-        "msg_type": "text_image",
+        "msg_type": "text",
         'content': {
-          'text': '肖申呀昂',
+          'text': '昨夜星辰昨夜风，画楼西畔桂堂东',
+        },
+      });
+      dynamicList.add({
+        "name": "陈一发",
+        'publish_time': (i + 3).toString() + '小时前',
+        'content': '节日快乐',
+        "avatar_url": "https://oss.likecho.com/user_avatar/109951164777049592.jpg",
+        "msg_type": "image",
+        'content': {
           'image_list': [
             'http://p1.music.126.net/AlmamjLHkrppEmpP37N74g==/109951164770785633.jpg',
             'https://oss.likecho.com/user_avatar/109951164462932601.jpg'
@@ -147,22 +162,6 @@ class DynamicContentPage extends StatelessWidget {
         ),
         SizedBox(height: 4,),
         previewMsgContentItem(contentInfo)
-        // Text(
-        //   contentInfo['content'],
-        //   style: TextStyle(
-        //     fontSize: 16,
-        //     // fontWeight: FontWeight.w500
-        //   ),
-        // ),
-        // SizedBox(height: 10,),
-        // Container(
-        //   child: Flow(
-        //     delegate: ImageFlowDelegate(
-        //       count: imageItems.length,
-        //     ),
-        //     children: imageItems.map<Widget>((image) => flowImageItem(image)).toList(),
-        //   ),
-        // )
       ],
     );
   }
@@ -182,6 +181,21 @@ class DynamicContentPage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 10,),
+            Container(
+              child: Flow(
+                delegate: ImageFlowDelegate(
+                  count: message['content']['image_list'].length,
+                ),
+                children: message['content']['image_list'].map<Widget>((image) => flowImageItem(image)).toList(),
+              ),
+            )
+          ]
+        );
+        break;
+      case 'image':
+        content = Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
             Container(
               child: Flow(
                 delegate: ImageFlowDelegate(
