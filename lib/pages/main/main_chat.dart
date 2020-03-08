@@ -40,7 +40,7 @@ class ChatPageState extends State<MainChatPage>
     return ListView(
       children: <Widget>[
         _MenulistGroup.serializeFriendlist(menuList),
-        Container(height: 24),
+        Container(height: 16),
         Loader(
           loadTask: () => neteaseRepository.userFriendlist(97571233),
           builder: (context, result) {
@@ -107,9 +107,9 @@ class _FriendItemTileDivider extends StatelessWidget{
             Expanded(
               child: Container(
                 alignment: Alignment.centerLeft,
-                // decoration: BoxDecoration(
-                //   border: Border(top: BorderSide(color: LongColor.under_line_color, width: 1))///边框颜色、宽
-                // ),
+                decoration: BoxDecoration(
+                  border: Border(top: BorderSide(color: Theme.of(context).dividerColor, width: 1))///边框颜色、宽
+                ),
                 child: Row(children: <Widget>[
                   Text(
                     data['name'],
@@ -176,9 +176,9 @@ class _MenuItemTileDivider extends StatelessWidget {
             Expanded(
               child: Container(
                 alignment: Alignment.centerLeft,
-                // decoration: BoxDecoration(
-                //   border: Border(top: BorderSide(color: LongColor.under_line_color, width: 1))///边框颜色、宽
-                // ),
+                decoration: BoxDecoration(
+                  border: Border(top: BorderSide(color: Theme.of(context).dividerColor, width: 1))
+                ),
                 child: Row(children: <Widget>[
                   Text(
                     menu['title'],
