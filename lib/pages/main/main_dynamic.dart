@@ -14,7 +14,7 @@ class DynamicPageState extends State<MainDynamicPage> with AutomaticKeepAliveCli
   void initState() {
     super.initState();
     dynamicList = new List();
-    for (var i = 0; i < 10; i = i+3) {
+    for (var i = 0; i < 10; i = i+4) {
       dynamicList.add({
         "name": "钢铁侠",
         'publish_time': (i + 1).toString() + '小时前',
@@ -33,7 +33,7 @@ class DynamicPageState extends State<MainDynamicPage> with AutomaticKeepAliveCli
         'publish_time': (i + 2).toString() + '小时前',
         "id": i+1,
         "avatar_url": "http://p1.music.126.net/AlmamjLHkrppEmpP37N74g==/109951164770785633.jpg",
-        "msg_type": "text",
+        
         "msg_type": "text_image",
         'content': {
           'text': '我多么希望，有一个门口\n早晨，阳光照在草上我们站着\n扶着自己的门窗\n门很低\n但太阳是明亮的',
@@ -47,16 +47,17 @@ class DynamicPageState extends State<MainDynamicPage> with AutomaticKeepAliveCli
       });
       dynamicList.add({
         "name": "龙豪",
-        'publish_time': (i + 1).toString() + '小时前',
+        'publish_time': (i + 3).toString() + '小时前',
         "id": i,
         "avatar_url": "https://oss.likecho.com/user_avatar/109951164462932601.jpg",
+        "msg_type": "text",
         'content': {
           'text': '江南无所有，聊赠一枝春',
         },
       });
       dynamicList.add({
         "name": "谢春花",
-        'publish_time': (i + 3).toString() + '小时前',
+        'publish_time': (i + 4).toString() + '小时前',
         "avatar_url": "https://oss.likecho.com/user_avatar/109951164777049592.jpg",
         "msg_type": "image",
         'content': {
