@@ -159,12 +159,12 @@ class _PauseButton extends StatelessWidget {
       playing: IconButton(
           icon: Icon(Icons.pause),
           onPressed: () {
-            context.transportControls.pause();
+              context.transportControls.pause();
           }),
       pausing: IconButton(
           icon: Icon(Icons.play_arrow),
           onPressed: () {
-            context.transportControls.play();
+              context.transportControls.play();
           }),
       buffering: Container(
         height: 24,

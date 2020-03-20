@@ -32,7 +32,7 @@ class DynamicPageState extends State<MainDynamicPage> with AutomaticKeepAliveCli
         "name": "陈一发啊",
         'publish_time': (i + 2).toString() + '小时前',
         "id": i+1,
-        "avatar_url": "http://p1.music.126.net/AlmamjLHkrppEmpP37N74g==/109951164770785633.jpg",
+        "avatar_url": "https://oss.likecho.com/user_avatar/109951164770785633.jpg",
         "msg_type": "text_image",
         'content': {
           'text': '我多么希望，有一个门口\n早晨，阳光照在草上我们站着\n扶着自己的门窗\n门很低\n但太阳是明亮的',
@@ -61,7 +61,7 @@ class DynamicPageState extends State<MainDynamicPage> with AutomaticKeepAliveCli
         "msg_type": "image",
         'content': {
           'image_list': [
-            'http://p1.music.126.net/AlmamjLHkrppEmpP37N74g==/109951164770785633.jpg',
+            'https://oss.likecho.com/user_avatar/109951164770785633.jpg',
             'https://oss.likecho.com/user_avatar/109951164462932601.jpg'
           ]
         },
