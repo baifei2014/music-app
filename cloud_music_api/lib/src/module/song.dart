@@ -17,7 +17,7 @@ Handler song_url = (query, cookie) {
 
   return request(
       'POST',
-      'http://192.168.1.75:8080/weapi/song/enhance/player/url',
+      'https://music.likecho.com/weapi/song/enhance/player/url',
       {
         'ids': [query['id']],
 

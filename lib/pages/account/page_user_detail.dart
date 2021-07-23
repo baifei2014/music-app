@@ -56,7 +56,7 @@ class _DetailPage extends StatelessWidget {
               headerSliverBuilder: (context, _) {
                 return [
                   SliverOverlapAbsorber(
-                      handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context), child: _UserDetailAppBar(user))
+                      handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context), sliver: _UserDetailAppBar(user))
                 ];
               },
               body: SafeArea(

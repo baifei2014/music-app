@@ -55,7 +55,7 @@ class ArtistDetailPage extends StatelessWidget {
                           SliverOverlapAbsorber(
                             handle: NestedScrollView.sliverOverlapAbsorberHandleFor(
                                 context),
-                            child: ArtistHeader(artist: artist),
+                            sliver: ArtistHeader(artist: artist),
                           ),
                         ];
                       },

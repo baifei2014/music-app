@@ -4,7 +4,7 @@ part of '../module.dart';
 Handler playlist_detail = (query, cookie) {
   return request(
       'POST',
-      'http://192.168.1.75:8080/weapi/playlist/detail',
+      'https://music.likecho.com/weapi/playlist/detail',
       {
         'id': query['id'],
         'n': query['n'] ?? '100000',

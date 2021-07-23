@@ -3,7 +3,7 @@ part of '../module.dart';
 Handler chat_friendlist = (query, cookie) {
   return request(
     'POST',
-    'http://192.168.1.75:8080/weapi/friend/list',
+    'https://music.likecho.com/weapi/friend/list',
     {
       'uid': query['uid']
     },
@@ -15,7 +15,7 @@ Handler chat_friendlist = (query, cookie) {
 Handler chat_messagelist = (query, cookie) {
   return request(
     'POST',
-    'http://192.168.1.75:8080/weapi/chat_message/list',
+    'https://music.likecho.com/weapi/chat_message/list',
     {
       'group_id': query['group_id'],
       'page': query['page'] ?? '1',
